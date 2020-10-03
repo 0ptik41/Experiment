@@ -12,3 +12,10 @@ I'm not that bright. People do this kind of thing all the time making terrible
 software and I'm curious how one would go about doing it. It's not like I'm 
 going to use this as a programming or design philosophy elsewhere. I just want
 to try something that sounds like a weird challenge. 
+
+# Give it a Try! (It's just silly not malicious)
+```
+git clone https://github.com/0ptik41/Experiment
+cd Experiment
+python main.py -run
+```
