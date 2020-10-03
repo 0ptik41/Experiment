@@ -1,3 +1,4 @@
+import base64
 import sys
 import os 
 
@@ -8,22 +9,26 @@ def create_utils():
 	header = 'import base64\nimport socket\nimport os\n'
 	for lib in needed_imports.keys():
 		header += 'from %s import %s\n' % (lib, needed_imports[lib])
-	body = "\nBSZ=16;PAD='{'\npad=lambda s: s + (BSZ - len(s) % BSZ)*PAD\n"
-	enc = 'EncodeAES = lambda c, s: base64.b64encode(c.encrypt(pad(s)))\n'
-	dec = 'DecodeAES = lambda c, e: c.decrypt(base64.b64decode(e)).rstrip(PAD)\n'
-	# Add more functions?
-	srv = '\ndef start_listener(p):\n\ttry:\n\t\ts=socket.socket(socket.AF_INET,socket.SOCK_STREAM)\n'
-	srv += '\t\ts.bind(("0.0.0.0",p))\n\texcept socket.error:\n\t\treturn []\n\treturn s\n'
-	rcv = '\ndef create_socket():\n\ts=[]\n\ttry:\n\t\ts=socket.socket(socket.AF_INET,socket.SOCK_STREAM)\n'
-	rcv += '\texcept socket.error:\n\t\tpass\n\treturn s\n\n'
-	hide='\ndef fencrypt(fname,destroy):\n\tif not os.path.isfile(fname):\n\t\texit()\n\t'
-	hide+='efile=fname.split("/")[-1].split(".")[0]+".lol"\n\tcontent=open(fname,"rb").read()\n\t'
-	hide+='k=get_random_bytes(16);open(efile,"wb").write(EncodeAES(AES.new(k),content))\n\t'
-	hide+='open(fname.split("/")[-1].split(".")[0]+".key","wb").write(base64.b64encode(k))\n\t'
-	hide+='if destroy:\n\t\tos.remove(fname)\n\n'
-	see='def fdecrypt(fname):\n\tencd=open(fname,"rb").read()\n\tkf=fname.split(".")[0]+".key"\n\t'
-	see+='k=base64.b64decode(open(kf,"rb").read())\n\t'
-	see += 'return DecodeAES(AES.new(k),encd)\n\n'
+	body = base64.b64decode('CkJTWj0xNjtQQUQ9J3snCnBhZD1sYW1iZGEgczogcyArIChCU1ogLSBsZW4ocykgJSBCU1opKlBBRAo=')
+	enc = base64.b64decode('RW5jb2RlQUVTID0gbGFtYmRhIGMsIHM6IGJhc2U2NC5iNjRlbmNvZGUoYy5lbmNyeXB0KHBhZChzKSkpCg==')
+	dec = base64.b64decode('RGVjb2RlQUVTID0gbGFtYmRhIGMsIGU6IGMuZGVjcnlwdChiYXNlNjQuYjY0ZGVjb2RlKGUpKS5yc3RyaXAoUEFEKQo=')
+
+	srv = base64.b64decode('CmRlZiBzdGFydF9saXN0ZW5lcihwKToKCXRyeToKCQlzPXNvY2tldC5zb2NrZXQoc29ja2V0'\
+		  'LkFGX0lORVQsc29ja2V0LlNPQ0tfU1RSRUFNKQoJCXMuYmluZCgoIjAuMC4wLjAiLHApKQo'\
+		  'JZXhjZXB0IHNvY2tldC5lcnJvcjoKCQlyZXR1cm4gW10KCXJldHVybiBzCg==')
+	rcv = base64.b64decode('CmRlZiBjcmVhdGVfc29ja2V0KCk6CglzPVtdCgl0cnk6CgkJcz1zb2NrZXQuc29ja2V0KHN'\
+		  'vY2tldC5BRl9JTkVULHNvY2tldC5TT0NLX1NUUkVBTSkKCWV4Y2VwdCBzb2NrZXQuZ'\
+		  'XJyb3I6CgkJcGFzcwoJcmV0dXJuIHMKCg==')
+	hide = base64.b64decode('CmRlZiBmZW5jcnlwdChmbmFtZSxkZXN0cm95KToKCWlmIG5vdCBvcy5wYXRoLmlzZmlsZS'\
+		   'hmbmFtZSk6CgkJZXhpdCgpCgllZmlsZT1mbmFtZS5zcGxpdCgiLyIpWy0xXS5zcGxpdCgi'\
+		   'LiIpWzBdKyIubG9sIgoJY29udGVudD1vcGVuKGZuYW1lLCJyYiIpLnJlYWQoKQoJaz1nZX'\
+		   'RfcmFuZG9tX2J5dGVzKDE2KTtvcGVuKGVmaWxlLCJ3YiIpLndyaXRlKEVuY29kZUFFUyhB'\
+		   'RVMubmV3KGspLGNvbnRlbnQpKQoJb3BlbihmbmFtZS5zcGxpdCgiLyIpWy0xXS5zcGxpdC'\
+		   'giLiIpWzBdKyIua2V5Iiwid2IiKS53cml0ZShiYXNlNjQuYjY0ZW5jb2RlKGspKQoJaWYg'\
+		   'ZGVzdHJveToKCQlvcy5yZW1vdmUoZm5hbWUpCgo=')
+	see = base64.b64decode('ZGVmIGZkZWNyeXB0KGZuYW1lKToKCWVuY2Q9b3BlbihmbmFtZSwicmIiKS5yZWFkKCkKCWtm'\
+		  'PWZuYW1lLnNwbGl0KCIuIilbMF0rIi5rZXkiCglrPWJhc2U2NC5iNjRkZWNvZGUob3Blbihr'\
+		  'ZiwicmIiKS5yZWFkKCkpCglyZXR1cm4gRGVjb2RlQUVTKEFFUy5uZXcoayksZW5jZCkKCg==')
 	content = header+body+enc+dec+srv+rcv+hide+see
 	open(os.getcwd()+'/utils.py', 'wb').write(content)
 
@@ -37,8 +42,10 @@ def main():
 			utils.fencrypt(fname,True)
 	if '-run' in sys.argv:
 		open('hi.mkv','wb').write(utils.fdecrypt('omg.lol'))
-		os.system('vlc hi.mkv')
-
+		if os.name == 'posix' or os.name != 'nt':
+			os.system('vlc hi.mkv')
+		elif os.name == 'nt':
+			os.system('hi.mkv')
 
 if __name__ == '__main__':
 	main()
