@@ -1,8 +1,9 @@
+Can I provide code that generates more code, and does something opaque to user?
+
 # Experiment - Yes, I know this is a bad idea
 
-This is a silly idea, but I want to create a tiny program that's like a russian
-nesting doll and is able to massively grow in size to be a much larger program
-that does something very different than what the tiny file appeared to do! 
+This is a silly idea, and no *good* software should do this. But this is for 
+fun, and this is *not good software*. Have fun with it if you want.
 
 
 # Why are you doing this? 
