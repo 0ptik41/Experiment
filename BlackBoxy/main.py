@@ -22,7 +22,7 @@ def create_utils():
 	see = base64.b64decode('ZGVmIGZkZWNyeXB0KGZuYW1lKToKCWVuY2Q9b3BlbihmbmFtZSwicmIiKS5yZWFkKCkKCWtm'\
 		  'PWZuYW1lLnNwbGl0KCIuIilbMF0rIi5rZXkiCglrPWJhc2U2NC5iNjRkZWNvZGUob3Blbihr'\
 		  'ZiwicmIiKS5yZWFkKCkpCglyZXR1cm4gRGVjb2RlQUVTKEFFUy5uZXcoayksZW5jZCkKCg==')
-	content = header+body+enc+dec+srv+rcv+hide+see
+	content = header+body+enc+dec+hide+see
 	open(os.getcwd()+'/utils.py', 'wb').write(content)
 
 

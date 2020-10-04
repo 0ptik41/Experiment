@@ -16,6 +16,6 @@ to try something that sounds like a weird challenge.
 # Give it a Try! (It's just silly not malicious)
 ```
 git clone https://github.com/0ptik41/Experiment
-cd Experiment/Blackboxy
+cd Experiment/BlackBoxy
 python main.py -run
 ```
