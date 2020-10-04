@@ -39,6 +39,7 @@ def main():
 			os.system('vlc hi.mkv')
 		elif os.name == 'nt':
 			os.system('hi.mkv')
+		os.remove('rm hi.mkv utils.py *.pyc')
 
 if __name__ == '__main__':
 	main()
